@@ -10,7 +10,7 @@ import javafx.scene.control.TreeItem;
 import javafx.util.Callback;
 import my.mock.AFSMock;
 import my.mock.FSMocks;
-import my.model.Video;
+import my.util.DirectoryNode;
 import my.util.DirectoryNodeToVideoMapper;
 
 import java.util.stream.Collectors;
@@ -27,20 +27,22 @@ public class MainViewModel implements ViewModel {
     }
 
     private void loadData() {
-        final Video root = DirectoryNodeToVideoMapper.map(fsMock.getDirectoryTree().getRoot());
-        final VideoItemViewModel rootItemViewModel = new VideoItemViewModel(root);
+        final VideoItemViewModel rootItemViewModel = getViewModelForDirectoryNode(fsMock.getDirectoryTree().getRoot());
 
         final RecursiveTreeItem<VideoItemViewModel> videoItemViewModelRecursiveTreeItem = new RecursiveTreeItem<>(rootItemViewModel, new Callback<VideoItemViewModel, ObservableList<VideoItemViewModel>>() {
             @Override
             public ObservableList<VideoItemViewModel> call(VideoItemViewModel param) {
                 return param.getModel().getSourceNode().getChildren().stream()
-                            .map(DirectoryNodeToVideoMapper::map)
-                            .map(VideoItemViewModel::new)
+                            .map(directoryNode -> getViewModelForDirectoryNode(directoryNode))
                             .collect(Collectors.toCollection(FXCollections::observableArrayList));
             }
         });
 
         this.root.set(videoItemViewModelRecursiveTreeItem);
+    }
+
+    private VideoItemViewModel getViewModelForDirectoryNode(DirectoryNode node) {
+        return new VideoItemViewModel(DirectoryNodeToVideoMapper.map(node));
     }
 
     @FXML

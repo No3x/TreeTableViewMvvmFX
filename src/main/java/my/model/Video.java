@@ -1,5 +1,7 @@
 package my.model;
 
+import my.util.DirectoryNode;
+
 import java.util.UUID;
 
 public class Video {
@@ -7,8 +9,10 @@ public class Video {
     private UUID id;
     private String user;
     private String name;
+    private DirectoryNode sourceNode;
 
-    public Video(String user, String name) {
+    public Video(DirectoryNode sourceNode, String user, String name) {
+        this.sourceNode = sourceNode;
         this.id = UUID.randomUUID();
         this.user = user;
         this.name = name;
@@ -34,4 +38,7 @@ public class Video {
         this.name = name;
     }
 
+    public DirectoryNode getSourceNode() {
+        return sourceNode;
+    }
 }

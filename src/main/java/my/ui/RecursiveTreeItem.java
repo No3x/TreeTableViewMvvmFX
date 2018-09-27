@@ -44,7 +44,7 @@ public class RecursiveTreeItem<T> extends TreeItem<T> {
     private void addChildrenListener(T value){
         final ObservableList<T> children = childrenFactory.call(value);
 
-        children.forEach(child ->  RecursiveTreeItem.this.getChildren().add(new RecursiveTreeItem<>(child, getGraphic(), childrenFactory)));
+        children.forEach(child -> RecursiveTreeItem.this.getChildren().add(new RecursiveTreeItem<>(child, getGraphic(), childrenFactory)));
 
         children.addListener((ListChangeListener<T>) change -> {
             while(change.next()){
@@ -60,7 +60,6 @@ public class RecursiveTreeItem<T> extends TreeItem<T> {
                         RecursiveTreeItem.this.getChildren().removeAll(itemsToRemove);
                     });
                 }
-
             }
         });
     }

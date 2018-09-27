@@ -8,11 +8,13 @@ import my.model.Video;
 
 public class VideoItemViewModel implements ViewModel  {
 
-    StringProperty uuid = new SimpleStringProperty(this,"uuid");
-    StringProperty name = new SimpleStringProperty(this, "name");
-    StringProperty user = new SimpleStringProperty(this, "user");
+    private final StringProperty uuid = new SimpleStringProperty(this,"uuid");
+    private final StringProperty name = new SimpleStringProperty(this, "name");
+    private final StringProperty user = new SimpleStringProperty(this, "user");
+    private final Video model;
 
     public VideoItemViewModel(Video video) {
+        model = video;
         uuid.set(video.getId().toString());
         name.set(video.getName());
         user.set(video.getUser());
@@ -30,4 +32,7 @@ public class VideoItemViewModel implements ViewModel  {
         return user;
     }
 
+    public Video getModel() {
+        return model;
+    }
 }

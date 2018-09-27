@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.ui.MainView">
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="my.ui.MainView">
     <children>
-        <TreeTableView fx:id="videoTreeTableView" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TreeTableView fx:id="videoTreeTableView" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columns>
-                <TreeTableColumn prefWidth="191.0" text="uuidCol" fx:id="uuidCol"/>
-                <TreeTableColumn minWidth="0.0" prefWidth="171.0" text="userCol" fx:id="userCol"/>
-                <TreeTableColumn minWidth="0.0" prefWidth="171.0" text="nameCol" fx:id="nameCol"/>
+                <TreeTableColumn fx:id="uuidCol" prefWidth="191.0" text="uuidCol" />
+                <TreeTableColumn fx:id="userCol" minWidth="0.0" prefWidth="171.0" text="userCol" />
+                <TreeTableColumn fx:id="nameCol" minWidth="0.0" prefWidth="171.0" text="nameCol" />
             </columns>
         </TreeTableView>
+      <Button fx:id="switchValues" mnemonicParsing="false" onAction="#switchValues" text="Switch" />
     </children>
 </AnchorPane>
